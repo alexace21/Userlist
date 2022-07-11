@@ -1,24 +1,24 @@
+import { Fragment } from "react";
+import { UserActions } from "../UserConstants";
+
 export const UserItem = ({
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
-    imageUrl,
-    createdAt}) => {
+    user,
+    onActionClick
+}) => {
     return (
-        <tr>
+        <Fragment>
             <td>
-                <img src={imageUrl}
-                    alt={`${firstName}'s profile`} className="image" />
+                <img src={user.imageUrl}
+                    alt={`${user.firstName}'s profile`} className="image" />
             </td>
-            <td>{firstName}</td>
-            <td>{lastName}</td>
-            <td>{email}</td>
-            <td>{phoneNumber}</td>
-            <td>{createdAt}</td>
+            <td>{user.firstName}</td>
+            <td>{user.lastName}</td>
+            <td>{user.email}</td>
+            <td>{user.phoneNumber}</td>
+            <td>{user.createdAt}</td>
 
             <td className="actions">
-                <button className="btn edit-btn" title="Edit">
+                <button className="btn edit-btn" title="Edit" onClick={() => onActionClick(user._id, UserActions.Edit)}>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
                         className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 532 512">
@@ -27,7 +27,7 @@ export const UserItem = ({
                         </path>
                     </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete">
+                <button className="btn delete-btn" title="Delete" onClick={() => onActionClick(user._id, UserActions.Delete)}>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                         className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                         <path fill="currentColor"
@@ -35,7 +35,7 @@ export const UserItem = ({
                         </path>
                     </svg>
                 </button>
-                <button className="btn info-btn" title="Info">
+                <button className="btn info-btn" title="Info" onClick={() => onActionClick(user._id, UserActions.Details)}>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info"
                         className="svg-inline--fa fa-info" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="-150 0 512 612">
@@ -45,6 +45,6 @@ export const UserItem = ({
                     </svg>
                 </button>
             </td>
-        </tr>
+        </Fragment>
     );
 };
