@@ -43,5 +43,14 @@ export const edit = async (userData, userId) => {
 };
 
 export const del = async (userID) => {
+    const response = await fetch(`${baseUrl}/${userID}`, {
+        method: "DELETE",
+        headers: {
+            'content-type': 'application/json'
+        },
+    })
+
+    const result = await response.json();
     
+    return alert('Successfully deleted user!');
 };

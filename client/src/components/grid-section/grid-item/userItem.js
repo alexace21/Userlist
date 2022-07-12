@@ -9,7 +9,7 @@ export const UserItem = ({
         <Fragment>
             <td>
                 <img src={user.imageUrl}
-                    alt={`${user.firstName}'s profile`} className="image" />
+                    alt={`${user.firstName}'s profile`} className="image" onMouseEnter={() => onActionClick(user._id, UserActions.Details)}/>
             </td>
             <td>{user.firstName}</td>
             <td>{user.lastName}</td>

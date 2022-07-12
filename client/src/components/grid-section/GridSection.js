@@ -65,6 +65,45 @@ export const GridSection = () => {
 
   }
 
+  const editUserHandler = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const {
+      firstName,
+      lastName,
+      email,
+      imageUrl,
+      phoneNumber,
+      ...address
+    } = Object.fromEntries(formData);
+
+    const userData = {
+      firstName,
+      lastName,
+      email,
+      imageUrl,
+      phoneNumber,
+      address
+    }
+    
+    let id = e.target.getAttribute('user');
+
+    userService.edit(userData, id)
+      .then(user => {
+        setUsers(oldUsers => [...oldUsers, user])
+        closeHandler();
+      });
+
+  }
+
+  const deleteHandler = (userId) => {
+    userService.del(userId)
+      .then(() => {
+        closeHandler()
+      })
+  }
+
   return (
     <>
       <div className="table-wrapper">
@@ -80,6 +119,7 @@ export const GridSection = () => {
           <UserEdit
             user={userAction.user}
             onClose={closeHandler}
+            onEdit={editUserHandler}
           />
         }
 
@@ -87,6 +127,7 @@ export const GridSection = () => {
           <UserDelete
             user={userAction.user}
             onClose={closeHandler}
+            onDel={deleteHandler}
           />
         }
 
@@ -156,7 +197,7 @@ export const GridSection = () => {
           </thead>
           <tbody>
             {users.map(user => (
-              <tr key={user._id}>
+              <tr key={user._id} id={user._id}>
                 <UserItem
                   user={user}
                   onActionClick={userActionClickHandler}
