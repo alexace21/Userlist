@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { UserItem } from "./grid-item/userItem";
-import { UserDetails } from "./user-details/UserDetails";
 
 import * as userService from '../../services/userService';
-import { UserEdit } from "./user-edit/UserEdit";
+
 import { UserActions } from "./UserConstants";
+import { UserItem } from "./grid-item/userItem";
+import { UserDetails } from "./user-details/UserDetails";
+import { UserEdit } from "./user-edit/UserEdit";
 import { UserDelete } from "./user-delete/UserDelete";
-import { UserCreate } from "./grid-item/user-create/UserCreate";
+import { UserCreate } from "./user-create/UserCreate";
 
 
 export const GridSection = () => {

@@ -1,5 +1,5 @@
 import { Header } from './components/common/Header';
-import { Footer } from './components/Footer';
+import { Footer } from './components/common/Footer';
 import { Search } from './components/search/Search';
 import { GridSection } from './components/grid-section/GridSection';
 import './App.css';
